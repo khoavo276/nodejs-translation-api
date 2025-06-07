@@ -1,8 +1,16 @@
 require("dotenv").config();
 const express = require("express");
 const translator = require("open-google-translator");
+const cors = require("cors");
 
 const app = express();
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 app.use(express.json());
 
 async function translateObject(obj, from, to) {
